@@ -1,5 +1,6 @@
 function filterLettersWithoutSpaces(string) {
   return string
+    .toLowerCase()
     .split('')
     .filter((letter) => letter !== ' ')
     .sort()
