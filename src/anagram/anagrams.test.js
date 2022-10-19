@@ -10,6 +10,8 @@ describe('isAnagram function :', () => {
 
   it('should return true when the arguments have spaces', () => {
     expect(isAnagram('conversation', 'voices rant on')).toBe(true);
+    // revers the arguments
+    expect(isAnagram('voices rant on', 'conversation')).toBe(true);
   });
 
   it('should return true when the arguments have capital letters', () => {
