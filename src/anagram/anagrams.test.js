@@ -1,8 +1,11 @@
 import {isAnagram} from './anagrams';
-describe('findCurrentPositionIndex function :', () => {
+describe('isAnagram function :', () => {
     it('should return true when the two strings are anagrams', () => {
         expect(isAnagram('listen', 'silent')).toBe(true);
     });
    
+    it('should return false when the two strings have same letter but different length', () => {
+        expect(isAnagram('listen', 'silentt')).toBe(false);
+    });
   });
   
