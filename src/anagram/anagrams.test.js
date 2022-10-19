@@ -12,4 +12,7 @@ describe('isAnagram function :', () => {
     expect(isAnagram('conversation', 'voices rant on')).toBe(true);
   });
 
+  it('should return true when the arguments have capital letters', () => {
+    expect(isAnagram('Elvis', 'Lives')).toBe(true);
+  });
 });
