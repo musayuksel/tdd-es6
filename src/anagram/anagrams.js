@@ -1,8 +1,9 @@
 function filterLettersWithoutSpaces(string) {
+    const alphabetLetters = 'abcdefghijklmnopqrstuvwxyz';
   return string
     .toLowerCase()
     .split('')
-    .filter((letter) => letter !== ' ')
+    .filter((letter) => alphabetLetters.includes(letter))
     .sort()
     .join('');
 }
