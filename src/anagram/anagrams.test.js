@@ -15,4 +15,8 @@ describe('isAnagram function :', () => {
   it('should return true when the arguments have capital letters', () => {
     expect(isAnagram('Elvis', 'Lives')).toBe(true);
   });
+
+  it('should return true when the arguments have non-alphabetic characters', () => {
+    expect(isAnagram('Dormitory', 'dirty room##')).toBe(true);
+  });
 });
