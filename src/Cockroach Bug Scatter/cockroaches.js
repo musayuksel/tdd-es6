@@ -1,10 +1,7 @@
-function cockroaches(room) {
-  return [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-}
-
-function findAllCockroaches(room) {
+const findAllCockroaches = (room) => {
   const cockroachesPositions = [];
   const cockroachesDirections = "UDLR";
+
   room.forEach((row, rowIndex) => {
     row.split("").forEach((cell, cellIndex) => {
       if (cockroachesDirections.includes(cell)) {
@@ -15,7 +12,12 @@ function findAllCockroaches(room) {
       }
     });
   });
+
   return cockroachesPositions;
-}
+};
+
+const cockroaches = (room) => {
+  return [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+};
 
 export { cockroaches, findAllCockroaches };
