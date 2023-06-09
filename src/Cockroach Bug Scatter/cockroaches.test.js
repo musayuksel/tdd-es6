@@ -1,4 +1,4 @@
-import { findAllCockroaches } from "./cockroaches";
+import { findAllCockroaches, moveCockroachToWall } from "./cockroaches";
 
 const room1 = [
   "+----------------0---------------+",
@@ -31,5 +31,26 @@ const room1Cockroaches = [
 describe("findAllCockroaches function :", () => {
   it("should return all cockroaches positions and directions", () => {
     expect(findAllCockroaches(room1)).toEqual(room1Cockroaches);
+  });
+});
+
+describe("moveCockroachToWall function :", () => {
+  it("should move cockroach to wall", () => {
+    expect(moveCockroachToWall(room1Cockroaches[0], room1)).toEqual({
+      position: [0, 11],
+      direction: "U",
+    });
+    expect(moveCockroachToWall(room1Cockroaches[1], room1)).toEqual({
+      position: [11, 20],
+      direction: "D",
+    });
+    expect(moveCockroachToWall(room1Cockroaches[2], room1)).toEqual({
+      position: [4, 0],
+      direction: "L",
+    });
+    expect(moveCockroachToWall(room1Cockroaches[3], room1)).toEqual({
+      position: [5, 33],
+      direction: "R",
+    });
   });
 });
