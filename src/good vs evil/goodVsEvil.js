@@ -12,6 +12,17 @@ function findTotalPower(army, side) {
     );
 }
 
-function goodVsEvil(good, evil) {}
+function goodVsEvil(good, evil) {
+  const goodsTotalPower = findTotalPower(good, "good");
+  const evilsTotalPower = findTotalPower(evil, "evil");
+
+  if (goodsTotalPower > evilsTotalPower) {
+    return "Battle Result: Good triumphs over Evil";
+  } else if (goodsTotalPower < evilsTotalPower) {
+    return "Battle Result: Evil eradicates all trace of Good";
+  } else {
+    return "Battle Result: No victor on this battle field";
+  }
+}
 
 export { findTotalPower, goodVsEvil };
