@@ -30,7 +30,6 @@ const moveCockroachToWall = (cockroach, room) => {
     currentPos[1] = room[0].length - 1;
   }
 
-  console.log({ currentPos, currentDir });
   return cockroach;
 };
 
@@ -43,7 +42,7 @@ const findAllHolesFromTopToLeft = (room) => {
       if (holesDirections.includes(cell)) {
         holesPositions.push({
           position: [rowIndex, cellIndex],
-          holeIndex: cell,
+          holeIndex: +cell,
         });
       }
     });
@@ -66,11 +65,93 @@ const findAllHolesFromTopToLeft = (room) => {
     ...downWall,
     ...rightWall,
   ]);
-  console.log([...sortedHolesFromUpToLeft]);
   return [...sortedHolesFromUpToLeft];
 };
 const cockroaches = (room) => {
-  return [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  const allCockroaches = findAllCockroaches(room);
+  const allHoles = findAllHolesFromTopToLeft(room);
+  const holes = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+  allCockroaches.forEach((cockroach) => {
+    const newPositionOfCockroach = moveCockroachToWall(cockroach, room);
+    let { position, direction } = newPositionOfCockroach;
+    // if (direction === "U") { find first hole that position[0] =0 and position[1] is same or less than cockroach position[1] }
+    // if (direction === "D") { find first hole that position[0] =room.length -1 and position[1] is same or less than cockroach position[1] }
+    // if (direction === "L") { find first hole that position[1] =0 and position[0] is same or less than cockroach position[0] }
+    // if (direction === "R") { find first hole that position[1] =room[0].length -1 and position[0] is same or less than cockroach position[0] }
+
+    if (direction === "U") {
+      const hole = allHoles.find(
+        (hole) => hole.position[0] === 0 && hole.position[1] <= position[1]
+      );
+      // if there is no hole put the position to top left corner
+
+      if (!hole) {
+        position[0] = 0;
+        position[1] = 0;
+        direction = "L";
+      } else {
+        holes[hole.holeIndex] += 1;
+      }
+    }
+    if (direction === "L") {
+      const hole = allHoles.find(
+        (hole) => hole.position[1] === 0 && position[0] <= hole.position[0]
+      );
+      if (!hole) {
+        position[0] = room.length - 1;
+        position[1] = 0;
+        direction = "D";
+      } else {
+        holes[hole.holeIndex] += 1;
+      }
+    }
+    if (direction === "D") {
+      const hole = allHoles.find(
+        (hole) =>
+          hole.position[0] === room.length - 1 &&
+          position[1] <= hole.position[1]
+      );
+      if (!hole) {
+        position[0] = room.length - 1;
+        position[1] = room[0].length - 1;
+        direction = "R";
+      } else {
+        holes[hole.holeIndex] += 1;
+      }
+    }
+
+    if (direction === "R") {
+      const hole = allHoles.find(
+        (hole) =>
+          hole.position[1] === room[0].length - 1 &&
+          hole.position[0] <= position[0]
+      );
+      if (!hole) {
+        position[0] = 0;
+        position[1] = room[0].length - 1;
+        direction = "U";
+      } else {
+        holes[hole.holeIndex] += 1;
+      }
+    }
+    if (direction === "U") {
+      const hole = allHoles.find(
+        (hole) => hole.position[0] === 0 && hole.position[1] <= position[1]
+      );
+      // if there is no hole put the position to top left corner
+
+      if (!hole) {
+        position[0] = 0;
+        position[1] = 0;
+        direction = "L";
+      } else {
+        holes[hole.holeIndex] += 1;
+      }
+    }
+  });
+
+  return holes;
 };
 
 export {

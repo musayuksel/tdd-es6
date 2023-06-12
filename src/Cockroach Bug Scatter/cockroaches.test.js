@@ -2,6 +2,7 @@ import {
   findAllCockroaches,
   moveCockroachToWall,
   findAllHolesFromTopToLeft,
+  cockroaches,
 } from "./cockroaches";
 
 const room1 = [
@@ -33,14 +34,14 @@ const room1Cockroaches = [
 ];
 
 const holesFromTopToLeft = [
-  { position: [0, 17], holeIndex: "0" },
-  { position: [0, 5], holeIndex: "6" },
-  { position: [0, 0], holeIndex: "8" },
-  { position: [3, 0], holeIndex: "7" },
-  { position: [8, 0], holeIndex: "3" },
-  { position: [11, 16], holeIndex: "2" },
-  { position: [7, 33], holeIndex: "1" },
-  { position: [4, 33], holeIndex: "9" },
+  { position: [0, 17], holeIndex: 0 },
+  { position: [0, 5], holeIndex: 6 },
+  { position: [0, 0], holeIndex: 8 },
+  { position: [3, 0], holeIndex: 7 },
+  { position: [8, 0], holeIndex: 3 },
+  { position: [11, 16], holeIndex: 2 },
+  { position: [7, 33], holeIndex: 1 },
+  { position: [4, 33], holeIndex: 9 },
 ];
 
 describe("findAllCockroaches function :", () => {
@@ -73,5 +74,26 @@ describe("moveCockroachToWall function :", () => {
 describe("findAllHolesFromTopToLeft function :", () => {
   it("should return all holes positions starting from top and going to left", () => {
     expect(findAllHolesFromTopToLeft(room1)).toEqual(holesFromTopToLeft);
+  });
+});
+
+describe("cockroaches function :", () => {
+  it("should return number of cockroaches in each hole", () => {
+    expect(
+      cockroaches([
+        "+----------------0---------------+",
+        "|                                |",
+        "|                                |",
+        "|          U        D            |",
+        "|     L                          |",
+        "|              R                 |",
+        "|           L                    |",
+        "|  U                             1",
+        "3        U    D                  |",
+        "|         L              R       |",
+        "|                                |",
+        "+----------------2---------------+",
+      ])
+    ).toEqual([1, 2, 2, 5, 0, 0, 0, 0, 0, 0]);
   });
 });
