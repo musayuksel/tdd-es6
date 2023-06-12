@@ -13,3 +13,13 @@ describe("findTotalPower function", () => {
     expect(findTotalPower(mockArmy, mockSide)).toEqual(25);
   });
 });
+
+describe("goodVsEvil function", () => {
+  it("should return good wins", () => {
+    const goods = "0 0 0 0 0 10";
+    const evils = "0 1 1 1 1 0 0";
+    expect(goodVsEvil(goods, evils)).toEqual(
+      "Battle Result: Good triumphs over Evil"
+    );
+  });
+});
