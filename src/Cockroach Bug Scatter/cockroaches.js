@@ -30,11 +30,52 @@ const moveCockroachToWall = (cockroach, room) => {
     currentPos[1] = room[0].length - 1;
   }
 
+  console.log({ currentPos, currentDir });
   return cockroach;
 };
 
+const findAllHolesFromTopToLeft = (room) => {
+  const holesPositions = [];
+  const holesDirections = "0123456789";
+
+  room.forEach((row, rowIndex) => {
+    row.split("").forEach((cell, cellIndex) => {
+      if (holesDirections.includes(cell)) {
+        holesPositions.push({
+          position: [rowIndex, cellIndex],
+          holeIndex: cell,
+        });
+      }
+    });
+  });
+
+  const upWall = holesPositions
+    .filter((hole) => hole.position[0] === 0)
+    .reverse();
+  const downWall = holesPositions.filter(
+    (hole) => hole.position[0] === room.length - 1
+  );
+  const leftWall = holesPositions.filter((hole) => hole.position[1] === 0);
+  const rightWall = holesPositions
+    .filter((hole) => hole.position[1] === room[0].length - 1)
+    .reverse();
+
+  const sortedHolesFromUpToLeft = new Set([
+    ...upWall,
+    ...leftWall,
+    ...downWall,
+    ...rightWall,
+  ]);
+  console.log([...sortedHolesFromUpToLeft]);
+  return [...sortedHolesFromUpToLeft];
+};
 const cockroaches = (room) => {
   return [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 };
 
-export { cockroaches, findAllCockroaches, moveCockroachToWall };
+export {
+  cockroaches,
+  findAllCockroaches,
+  moveCockroachToWall,
+  findAllHolesFromTopToLeft,
+};
