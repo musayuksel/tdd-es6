@@ -22,4 +22,20 @@ describe("goodVsEvil function", () => {
       "Battle Result: Good triumphs over Evil"
     );
   });
+
+  it("should return evil wins", () => {
+    const goods = "1 1 1 1 1 1";
+    const evils = "1 1 1 1 1 1 1";
+    expect(goodVsEvil(goods, evils)).toEqual(
+      "Battle Result: Evil eradicates all trace of Good"
+    );
+  });
+
+  it("should return no victor", () => {
+    const goods = "1 0 0 0 0 0";
+    const evils = "1 0 0 0 0 0 0";
+    expect(goodVsEvil(goods, evils)).toEqual(
+      "Battle Result: No victor on this battle field"
+    );
+  });
 });
