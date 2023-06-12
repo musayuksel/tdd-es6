@@ -8,7 +8,7 @@ describe("findTotalPower function", () => {
   });
 
   it("should return total power of army", () => {
-    const mockArmy = "1,1,1,1,1,1,1";
+    const mockArmy = "1 1 1 1 1 1 1";
     const mockSide = "evil";
     expect(findTotalPower(mockArmy, mockSide)).toEqual(25);
   });
