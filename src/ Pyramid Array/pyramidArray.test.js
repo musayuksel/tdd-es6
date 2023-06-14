@@ -17,5 +17,8 @@ describe("pyramid function", () => {
 
     mockNumber = 4;
     expect(pyramid(mockNumber)).toEqual([[1], [1, 1], [1, 1, 1], [1, 1, 1, 1]]);
+
+    mockNumber = 0;
+    expect(pyramid(mockNumber)).toEqual([]);
   });
 });
