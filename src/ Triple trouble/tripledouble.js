@@ -9,4 +9,15 @@ const findStraightTriples = (str) => {
   return [...new Set(triples)];
 };
 
-export { findStraightTriples };
+const findStraightDoubles = (str) => {
+  const doubles = [];
+
+  str.split("").forEach((num, i, strArr) => {
+    if (num === strArr[i + 1]) {
+      doubles.push(parseInt(num.repeat(2)));
+    }
+  });
+  return [...new Set(doubles)];
+};
+
+export { findStraightTriples, findStraightDoubles };
