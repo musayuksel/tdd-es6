@@ -6,7 +6,7 @@ const findStraightTriples = (str) => {
       triples.push(parseInt(num.repeat(3)));
     }
   });
-  return triples;
+  return [...new Set(triples)];
 };
 
 export { findStraightTriples };
