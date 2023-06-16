@@ -20,6 +20,16 @@ const findStraightDoubles = (str) => {
   return [...new Set(doubles)];
 };
 
-export { findStraightTriples, findStraightDoubles };
+const tripledouble = (num1, num2) => {
+  const num1Triples = findStraightTriples(num1.toString());
+  const num2Doubles = findStraightDoubles(num2.toString());
 
-const tripledouble = (num1, num2) => {};
+  const triplesAndDoubles = num1Triples.some((triple) => {
+    const doubled = triple.slice(0, 2);
+    return num2Doubles.includes(doubled);
+  });
+
+  return triplesAndDoubles > 0 ? 1 : 0;
+};
+
+export { findStraightTriples, findStraightDoubles, tripledouble };
