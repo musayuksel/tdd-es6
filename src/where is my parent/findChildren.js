@@ -1,4 +1,11 @@
-const findChildren = (letters) => {};
+const findChildren = (letters) => {
+  const mothers = countChildren(letters);
+
+  return Object.keys(mothers)
+    .sort()
+    .map((letter) => letter + letter.toLowerCase().repeat(mothers[letter]))
+    .join("");
+};
 
 const countChildren = (letters) => {
   return letters.split("").reduce((mothers, letter) => {
