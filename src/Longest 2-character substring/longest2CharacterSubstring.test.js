@@ -9,3 +9,12 @@ describe("substring function", () => {
     expect(substring("abacddcd")).toEqual("cddcd");
   });
 });
+
+describe("Edge cases", () => {
+  it("should return empty string if input is empty string", () => {
+    expect(substring("")).toEqual("");
+  });
+  it("should return correct string if input is long", () => {
+    expect(substring("cefageaacceaccacca")).toEqual("accacca");
+  });
+});
