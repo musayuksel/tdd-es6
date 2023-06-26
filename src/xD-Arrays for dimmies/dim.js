@@ -1,5 +1,12 @@
-function dim() {
-  return true;
+function dim(...args) {
+  let value = args.pop();
+  console.log({ args, value });
+  while (args.length > 0) {
+    const currentArg = args.pop();
+    value = createArrayFromValue(currentArg, value);
+  }
+
+  return value;
 }
 
 function createArrayFromValue(number, value) {

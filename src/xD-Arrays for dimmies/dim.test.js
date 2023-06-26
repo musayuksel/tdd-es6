@@ -16,3 +16,31 @@ describe("createArrayFromValue function", () => {
     expect(createArrayFromValue(3, fn)).toEqual([5, 5, 5]);
   });
 });
+
+describe("dim function", () => {
+  it("should return array of value for 2 args", () => {
+    expect(dim(3, 0)).toEqual([0, 0, 0]);
+  });
+
+  it("should return array of value for 3 args", () => {
+    expect(dim(2, 3, 0)).toEqual([
+      [0, 0, 0],
+      [0, 0, 0],
+    ]);
+  });
+
+  it("should return array of value for 4 args", () => {
+    expect(dim(2, 3, 4, 0)).toEqual([
+      [
+        [0, 0, 0, 0],
+        [0, 0, 0, 0],
+        [0, 0, 0, 0],
+      ],
+      [
+        [0, 0, 0, 0],
+        [0, 0, 0, 0],
+        [0, 0, 0, 0],
+      ],
+    ]);
+  });
+});
