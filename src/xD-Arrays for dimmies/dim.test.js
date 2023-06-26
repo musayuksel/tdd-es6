@@ -43,4 +43,10 @@ describe("dim function", () => {
       ],
     ]);
   });
+
+  it("should return array of function that returns 0 for 2 args", () => {
+    const fn = jest.fn(() => 0);
+    expect(dim(3, fn)).toEqual([0, 0, 0]);
+    expect(fn).toHaveBeenCalledTimes(3);
+  });
 });
