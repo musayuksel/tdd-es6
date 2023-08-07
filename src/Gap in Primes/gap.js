@@ -1,3 +1,17 @@
+const isPrime = (num) => {
+  if (num <= 1) return false;
+  if (num <= 3) return true;
+  if (num % 2 === 0 || num % 3 === 0) return false;
+
+  let divisor = 5;
+  while (divisor * divisor <= num) {
+    if (num % divisor === 0 || num % (divisor + 2) === 0) return false;
+    divisor += 6;
+  }
+
+  return true;
+};
+
 const gap = (gap, start, end) => {
   let lastPrime = 2;
   for (let i = start; i <= end; i++) {
@@ -7,11 +21,6 @@ const gap = (gap, start, end) => {
     }
   }
   return null;
-};
-
-const isPrime = (num) => {
-  for (let i = 2; i < num; i++) if (num % i === 0) return false;
-  return num > 1;
 };
 
 export { gap, isPrime };
