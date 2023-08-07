@@ -1,5 +1,12 @@
 const gap = (gap, start, end) => {
-  // your code
+  let lastPrime = 2;
+  for (let i = start; i <= end; i++) {
+    if (isPrime(i)) {
+      if (i - lastPrime === gap) return [lastPrime, i];
+      lastPrime = i;
+    }
+  }
+  return null;
 };
 
 const isPrime = (num) => {
